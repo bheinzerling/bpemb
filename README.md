@@ -35,6 +35,8 @@ INFO:gensim.models.keyedvectors:loaded (3829, 100) matrix
 
 ## Download BPEmb
 
+Downloads for the 15 largest languages below. Downloads for all 275 languages [here](download.md).
+
 | Language | Wikipedia edition | merge ops | model | vocab | 25 dims | 50 dims | 100 dims | 200 dims | 300 dims |
 | - | - | - | - | - | - | - | - | - | - |
 | **English** | en | 1000 | [model](http://cosyne.h-its.org/bpemb/data/en.wiki.bpe.op1000.model) | [vocab](http://cosyne.h-its.org/bpemb/data/en.wiki.bpe.op1000.vocab) | [25](http://cosyne.h-its.org/bpemb/data/en.wiki.bpe.op1000.d25.w2v.bin.tar.gz) | [50](http://cosyne.h-its.org/bpemb/data/en.wiki.bpe.op1000.d50.w2v.bin.tar.gz) | [100](http://cosyne.h-its.org/bpemb/data/en.wiki.bpe.op1000.d100.w2v.bin.tar.gz) | [200](http://cosyne.h-its.org/bpemb/data/en.wiki.bpe.op1000.d200.w2v.bin.tar.gz) | [300](http://cosyne.h-its.org/bpemb/data/en.wiki.bpe.op1000.d300.w2v.bin.tar.gz) |
