@@ -37,7 +37,7 @@ INFO:gensim.models.keyedvectors:loaded (3829, 100) matrix
 
 #### What are subword embeddings and why should I use them?
 
-If you are using word embeddings like word2vec or GloVe, you have probably encountered out-of-vocabulary words, i.e., words for which no embedding exists. A makeshift solution is to replace such words with an <unk> token and train a generic embedding representing such unknown words.
+If you are using word embeddings like word2vec or GloVe, you have probably encountered out-of-vocabulary words, i.e., words for which no embedding exists. A makeshift solution is to replace such words with an `<unk>` token and train a generic embedding representing such unknown words.
 
 Subword approaches try to solve the unknown word problem differently, by assuming that you can reconstruct a word's meaning from its parts. For example, the suffix *-shire* lets you guess that *Melfordshire* is probably a location, or the suffix *-osis* that *Myxomatosis* might be a sickness.
 
