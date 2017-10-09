@@ -74,7 +74,7 @@ Applying BPE to a large corpus and then training embeddings allows capturing sem
 
 The most similar BPE symbols include many English place suffixes like *ington* (e.g. Islington), *ford* (Stratford), *outh* (Plymouth), *bridge* (Cambridge), as well as parts of the UK (England, Wales, Scotland).
 
-For the symbol *osis* does not exists in the embeddings with 3000 operations, but does when using more, e.g. 10,000 operations:
+The symbol *osis* does not exist after 3000 merges, but is created when using more, e.g. 10,000 operations:
 
 ```Python
 >>> model_10k = KeyedVectors.load_word2vec_format("data/en/en.wiki.bpe.op10000.d100.w2v.bin", binary=True)
