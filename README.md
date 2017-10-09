@@ -59,7 +59,7 @@ Learning these merge operations from a large corpus (e.g. all Wikipedia articles
 Applying BPE to a large corpus and then training embeddings allows capturing semantic similarity on the subword level:
 
 ```Python
->>> bpe_embs.most_similar("shire")
+>>> model.most_similar("shire")
 [('ington', 0.7028511762619019),
  ('▁england', 0.700973391532898),
  ('ford', 0.6951344013214111),
@@ -73,6 +73,24 @@ Applying BPE to a large corpus and then training embeddings allows capturing sem
 ```
 
 The most similar BPE symbols include many English place suffixes like *ington* (e.g. Islington), *ford* (Stratford), *outh* (Plymouth), *bridge* (Cambridge), as well as parts of the UK (England, Wales, Scotland).
+
+For the symbol *osis* does not exists in the embeddings with 3000 operations, but does when using more, e.g. 10,000 operations:
+
+```Python
+>>> model_10k = KeyedVectors.load_word2vec_format("data/en/en.wiki.bpe.op3000.d100.w2v.bin", binary=True)
+INFO:gensim.models.keyedvectors:loaded (10817, 100) matrix
+>>> model_10k.most_similar("osis")
+[('▁disease', 0.8588078618049622),
+ ('▁diagn', 0.8428301811218262),
+ ('itis', 0.8259040117263794),
+ ('▁cancer', 0.7827620506286621),
+ ('▁treatment', 0.7825955748558044),
+ ('▁patients', 0.7808188199996948),
+ ('▁dise', 0.7452374696731567),
+ ('▁tum', 0.7444864511489868),
+ ('ysis', 0.738912045955658),
+ ('▁therap', 0.7286049127578735)]
+```
 
 
 #### How to use BPEmb
