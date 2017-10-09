@@ -35,9 +35,9 @@ INFO:gensim.models.keyedvectors:loaded (3829, 100) matrix
 
 ## Overview
 
-- [What-and-why](#what-are-subword-embeddings-and-why-should-i-use-them?)
+- [What and why](#what-are-subword-embeddings-and-why-should-i-use-them)
 - [How to use BPEmb](#how-to-use-bpemb)
-- [Number of BPE merge operations](#how-should-i-choose-the-number-of-bpe-merge-operations?)
+- [Number of BPE merge operations](#how-should-i-choose-the-number-of-bpe-merge-operations)
 - [Download](#download-bpemb)
 
 #### What are subword embeddings and why should I use them?
