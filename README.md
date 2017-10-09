@@ -98,7 +98,7 @@ INFO:gensim.models.keyedvectors:loaded (10817, 100) matrix
 1. Preprocessing: Lowercase the text you want to encode, replace all digits with 0, and replace all URLs with `<url>`. See `preprocess_text.sh` for the exact commands used.
 
 ```bash
-$ ./preprocess.sh my_text.txt
+$ ./preprocess_text.sh my_text.txt
 ```
 
 2. Apply BPE: Having installed [SentencePiece](https://github.com/google/sentencepiece) and downloaded a SentencePiece model for the language and number of merge operations you want, e.g. with the English 3000 merge op model downloaded to data/en/:
