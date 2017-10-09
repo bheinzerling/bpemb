@@ -87,6 +87,36 @@ $ spm_encode --model data/en/en.wiki.bpe.op3000.model < my_text.txt.clean > my_t
 3. Use in your favourite deep learning framework: `my_text.bpe3000` now contains a whitespace-separated sequence of BPE symbols. Convert these symbols to indices like you would with a word-based token sequence, load the corresponding embeddings, in this case `en.wiki.bpe.vs3000.d100.w2v.bin`, and create an embedding lookup layer. 
 
 
+#### How should I choose the number of BPE merge operations?
+
+The number of BPE merge operations determines if the resulting symbol sequences will tend to be short (few merge operations) or longer (more merge operations). Using very few merge operations will produce mostly character unigrams, bigrams, and trigrams, while peforming a large number of merge operations will create symbols representing the most frequent words:
+
+| Merge ops | Byte-pair encoded text |
+| - | - |
+| 5000 | 豊 田 駅 ( と よ だ え き ) は 、 東京都 日 野 市 豊 田 四 丁目 にある |
+| 10000 | 豊 田 駅 ( と よ だ えき ) は 、 東京都 日 野市 豊 田 四 丁目にある |
+| 25000 | 豊 田駅 ( とよ だ えき ) は 、 東京都 日 野市 豊田 四 丁目にある |
+| 50000 | 豊 田駅 ( とよ だ えき ) は 、 東京都 日 野市 豊田 四丁目にある |
+| Tokenized | 豊田 駅 （ と よ だ え き ） は 、 東京 都 日野 市 豊田 四 丁目 に ある |
+| | |
+| 10000 | 豐 田 站 是 東 日本 旅 客 鐵 道 ( JR 東 日本 ) 中央 本 線 的 鐵路 車站 |
+| 25000 | 豐田 站是 東日本旅客鐵道 ( JR 東日本 ) 中央 本 線的鐵路車站 |
+| 50000 | 豐田 站是 東日本旅客鐵道 ( JR 東日本 ) 中央 本線的鐵路車站 |
+| Tokenized | 豐田站 是 東日本 旅客 鐵道 （ JR 東日本 ） 中央本線 的 鐵路車站 |
+| | |
+| 1000 | to y od a \_station is \_a \_r ail way \_station \_on \_the \_ch ū ō\_main \_l ine|
+| 3000 | to y od a \_station \_is \_a \_railway \_station \_on \_the \_ch ū ō\_main \_line|
+| 10000 | toy oda \_station \_is \_a \_railway \_station \_on \_the \_ch ū ō\_main \_line|
+| 50000 | toy oda \_station \_is \_a \_railway \_station \_on \_the \_chū ō\_main \_line |
+| 100000 | toy oda \_station \_is \_a \_railway \_station \_on \_the \_chūō \_main \_line |
+| Tokenized | toyoda station is a railway station on the chūō main line |
+
+
+The advantage of having few operations is that this results in a smaller vocabulary of symbols. You need less data to learn representations (embeddings) of these symbols. The disadvantage is that you need data to learn how to compose those symbols into meaningful units (e.g. words).
+
+The advantage of having many operations is that many frequent words get their own symbols, so you don't have to learn how what the word *railway* means by composing it from the symbols *r*. *ail*, and *way*. The disadvantage is that you need more data to train good embeddings for these longer symbols, which is available for high-resource languages like English, but less so for low-resource languages like Khmer.
+
+
 ## Download BPEmb
 
 Downloads for the 15 largest (by Wikipedia size) languages below. Downloads for all 275 languages [here](download.md).
