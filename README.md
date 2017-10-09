@@ -35,6 +35,11 @@ INFO:gensim.models.keyedvectors:loaded (3829, 100) matrix
 
 ## Overview
 
+[What-and-why][#what-are-subword-embeddings-and-why-should-i-use-them?]
+[How to use BPEmb](#how-to-use-bpemb)
+[Number of BPE merge operations](#how-should-i-choose-the-number-of-bpe-merge-operations?)
+[Download](#download-bpemb)
+
 #### What are subword embeddings and why should I use them?
 
 If you are using word embeddings like word2vec or GloVe, you have probably encountered out-of-vocabulary words, i.e., words for which no embedding exists. A makeshift solution is to replace such words with an `<unk>` token and train a generic embedding representing such unknown words.
