@@ -77,7 +77,7 @@ The most similar BPE symbols include many English place suffixes like *ington* (
 For the symbol *osis* does not exists in the embeddings with 3000 operations, but does when using more, e.g. 10,000 operations:
 
 ```Python
->>> model_10k = KeyedVectors.load_word2vec_format("data/en/en.wiki.bpe.op3000.d100.w2v.bin", binary=True)
+>>> model_10k = KeyedVectors.load_word2vec_format("data/en/en.wiki.bpe.op10000.d100.w2v.bin", binary=True)
 INFO:gensim.models.keyedvectors:loaded (10817, 100) matrix
 >>> model_10k.most_similar("osis")
 [('▁disease', 0.8588078618049622),
