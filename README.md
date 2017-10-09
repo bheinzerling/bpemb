@@ -70,6 +70,23 @@ Applying BPE to a large corpus and then training embeddings allows capturing sem
 The most similar BPE symbols include many English place suffixes like *ington* (e.g. Islington), *ford* (Stratford), *outh* (Plymouth), *bridge* (Cambridge), as well as parts of the UK (England, Wales, Scotland).
 
 
+#### How to use BPEmb
+
+1. Preprocessing: Lowercase the text you want to encode, replace all digits with 0, and replace all URLs with `<url>`. See `preprocess_text.sh` for the exact commands used.
+
+```bash
+$ ./preprocess.sh my_text.txt
+```
+
+2. Apply BPE: Having installed [SentencePiece](https://github.com/google/sentencepiece) and downloaded a SentencePiece model for the language and number of merge operations you want, e.g. with the English 3000 merge op model downloaded to data/en/:
+
+```bash
+$ spm_encode --model data/en/en.wiki.bpe.op3000.model < my_text.txt.clean > my_text.bpe3000
+```
+
+3. Use in your favourite deep learning framework: `my_text.bpe3000` now contains a whitespace-separated sequence of BPE symbols. Convert these symbols to indices like you would with a word-based token sequence, load the corresponding embeddings, in this case `en.wiki.bpe.vs3000.d100.w2v.bin`, and create an embedding lookup layer. 
+
+
 ## Download BPEmb
 
 Downloads for the 15 largest (by Wikipedia size) languages below. Downloads for all 275 languages [here](download.md).
