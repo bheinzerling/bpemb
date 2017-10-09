@@ -67,6 +67,7 @@ Applying BPE to a large corpus and then training embeddings allows capturing sem
  ('orth', 0.5902647972106934)]
 ```
 
+The most similar BPE symbols include many English place suffixes like *ington* (e.g. Islington), *ford* (Stratford), *outh* (Plymouth), *bridge* (Cambridge), as well as parts of the UK (England, Wales, Scotland).
 
 
 ## Download BPEmb
