@@ -54,7 +54,7 @@ Enter Byte-Pair Encoding (BPE) [[Sennrich et al, 2016]](http://www.aclweb.org/an
 
 For example, applying BPE to English might first merge the characters *h* and *e* into a new symbol *he*, then *t* and *h* into *th*, then *t* and *he* into *the*, and so on.
 
-Learning these merge operations from a large corpus (e.g. all Wikipedia articles in a given language) often yields reasonable subword segementations. For example, a BPE model trained on English Wikipedia splits *melfordhire* in *mel*, *ford*, and *shire*.
+Learning these merge operations from a large corpus (e.g. all Wikipedia articles in a given language) often yields reasonable subword segementations. For example, a BPE model trained on English Wikipedia splits *melfordshire* into *mel*, *ford*, and *shire*.
 
 Applying BPE to a large corpus and then training embeddings allows capturing semantic similarity on the subword level:
 
