@@ -1,13 +1,13 @@
 # BPEmb
 
-BPEmb is a collection of pre-trained subword embeddings in 275 languages, based on Byte-Pair Encoding (BPE) and trained on Wikipedia. Its intended use is as input for neural models in natural language processing.
+BPEmb is a collection of pre-trained subword embeddings in 275 languages, based on Byte-Pair Encoding (BPE) and trained on Wikipedia. Its intended use is as input for neural models in natural language processing. [arxiv](https://arxiv.org/pdf/1710.02187.pdf)
 
 
 ## tl;dr
 
 - Subwords allow guessing the meaning of unknown / out-of-vocabulary words. E.g., the suffix *-shire* in *Melfordshire* indicates a location.
 - Byte-Pair Encoding gives a subword segmentation that is often good enough, without requiring tokenization or morphological analysis. In this case the BPE segmentation might be something like *melf ord shire*.
-- Pre-trained byte-pair embeddings work surprisingly well, while requiring no tokenization and being much smaller than alternatives: the 11 MB BPEmb English model matches the results of the 6 GB FastText model in our evaluation.
+- Pre-trained byte-pair embeddings work surprisingly well, while requiring no tokenization and being much smaller than alternatives: an 11 MB BPEmb English model matches the results of the 6 GB FastText model in our evaluation.
 
 
 ## Example
@@ -46,6 +46,28 @@ There are many ways of splitting a word into subwords. A simple method is to spl
 Another, more linguistically motivated way is a morphological analysis, but this requires tools and training data which might not be available for your language and domain of interest.
 
 Enter Byte-Pair Encoding (BPE) [[Sennrich et al, 2016]](http://www.aclweb.org/anthology/P16-1162), an unsupervised subword segmentation method. BPE starts with a sequence of symbols, for example characters, and iteratively merges the most frequent symbol pair into a new symbol.
+
+For example, applying BPE to English might first merge the characters *h* and *e* into a new symbol *he*, then *t* and *h* into *th*, then *t* and *he* into *the*, and so on.
+
+Learning these merge operations from a large corpus (e.g. all Wikipedia articles in a given language) often yields reasonable subword segementations. For example, a BPE model trained on English Wikipedia splits *melfordhire* in *mel*, *ford*, and *shire*.
+
+Applying BPE to a large corpus and then training embeddings allows capturing semantic similarity on the subword level:
+
+```Python
+>>> bpe_embs.most_similar("shire")
+[('ington', 0.7028511762619019),
+ ('▁england', 0.700973391532898),
+ ('ford', 0.6951344013214111),
+ ('▁wales', 0.6882895231246948),
+ ('outh', 0.6406722068786621),
+ ('▁kent', 0.6272492408752441),
+ ('bridge', 0.619121789932251),
+ ('well', 0.6175765991210938),
+ ('▁scotland', 0.6023901104927063),
+ ('orth', 0.5902647972106934)]
+```
+
+
 
 ## Download BPEmb
 
