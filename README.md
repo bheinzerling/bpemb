@@ -137,7 +137,7 @@ The number of BPE merge operations determines if the resulting symbol sequences 
 
 The advantage of having few operations is that this results in a smaller vocabulary of symbols. You need less data to learn representations (embeddings) of these symbols. The disadvantage is that you need data to learn how to compose those symbols into meaningful units (e.g. words).
 
-The advantage of having many operations is that many frequent words get their own symbols, so you don't have to learn how what the word *railway* means by composing it from the symbols *r*. *ail*, and *way*. The disadvantage is that you need more data to train good embeddings for these longer symbols, which is available for high-resource languages like English, but less so for low-resource languages like Khmer.
+The advantage of having many operations is that many frequent words get their own symbols, so you don't have to learn how what the word *railway* means by composing it from the symbols *r*, *ail*, and *way*. The disadvantage is that you need more data to train good embeddings for these longer symbols, which is available for high-resource languages like English, but less so for low-resource languages like Khmer.
 
 
 ## Download BPEmb
