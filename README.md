@@ -109,10 +109,10 @@ The number of BPE merge operations determines if the resulting symbol sequences 
 | 50000 | 豐田 站是 東日本旅客鐵道 ( JR 東日本 ) 中央 本線的鐵路車站 |
 | Tokenized | 豐田站 是 東日本 旅客 鐵道 （ JR 東日本 ） 中央本線 的 鐵路車站 |
 | | |
-| 1000 | to y od a \_station is \_a \_r ail way \_station \_on \_the \_ch ū ō\_main \_l ine|
-| 3000 | to y od a \_station \_is \_a \_railway \_station \_on \_the \_ch ū ō\_main \_line|
-| 10000 | toy oda \_station \_is \_a \_railway \_station \_on \_the \_ch ū ō\_main \_line|
-| 50000 | toy oda \_station \_is \_a \_railway \_station \_on \_the \_chū ō\_main \_line |
+| 1000 | to y od a \_station is \_a \_r ail way \_station \_on \_the \_ch ū ō \_main \_l ine|
+| 3000 | to y od a \_station \_is \_a \_railway \_station \_on \_the \_ch ū ō \_main \_line|
+| 10000 | toy oda \_station \_is \_a \_railway \_station \_on \_the \_ch ū ō \_main \_line|
+| 50000 | toy oda \_station \_is \_a \_railway \_station \_on \_the \_chū ō \_main \_line |
 | 100000 | toy oda \_station \_is \_a \_railway \_station \_on \_the \_chūō \_main \_line |
 | Tokenized | toyoda station is a railway station on the chūō main line |
 
