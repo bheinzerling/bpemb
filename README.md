@@ -142,7 +142,7 @@ The advantage of having many operations is that many frequent words get their ow
 
 ## Download BPEmb
 
-Downloads for the 15 largest (by Wikipedia size) languages below. Downloads for all 275 languages [here](download.md).
+Downloads for the 15 largest (by Wikipedia size) languages below. Downloads for all 275 languages here: [gensim/word2vec bin](download.bin.md), [word2vec txt](download.txt.md).
 
 | Language | Wikipedia edition | merge ops | model | vocab | 25 dims | 50 dims | 100 dims | 200 dims | 300 dims |
 | - | - | - | - | - | - | - | - | - | - |
