@@ -92,6 +92,39 @@ INFO:gensim.models.keyedvectors:loaded (10817, 100) matrix
  ('▁therap', 0.7286049127578735)]
 ```
 
+A similar example with a common German place name suffix:
+
+```Python
+>>> model_de = KeyedVectors.load_word2vec_format("data/de/de.wiki.bpe.op10000.d100.w2v.txt")
+>>> model_de.most_similar("ingen")
+[('lingen', 0.8205140233039856),
+ ('hausen', 0.7590259313583374),
+ ('hofen', 0.7375717163085938),
+ ('heim', 0.714651346206665),
+ ('bach', 0.6965473294258118),
+ ('sheim', 0.6638030409812927),
+ ('weiler', 0.6597662568092346),
+ ('dorf', 0.6320345401763916),
+ ('▁bad', 0.630476176738739),
+ ('berg', 0.6079661846160889)]
+```
+
+And with the German equivalent of *-osis*:
+
+```Python
+>>>model_de.most_similar("ose")
+[('krank', 0.7024262547492981),
+ ('▁erkrank', 0.625088095664978),
+ ('itis', 0.611713171005249),
+ ('▁behandlung', 0.5849611163139343),
+ ('▁krankheit', 0.5647835731506348),
+ ('hy', 0.55904620885849),
+ ('fekt', 0.5524205565452576),
+ ('pt', 0.5486388206481934),
+ ('apie', 0.5447515249252319),
+ ('▁krank', 0.5376874804496765)]
+```
+
 
 #### How to use BPEmb
 
