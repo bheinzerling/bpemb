@@ -1,6 +1,8 @@
 # BPEmb
 
-BPEmb is a collection of pre-trained subword embeddings in 275 languages, based on Byte-Pair Encoding (BPE) and trained on Wikipedia. Its intended use is as input for neural models in natural language processing. [arxiv](https://arxiv.org/pdf/1710.02187.pdf)
+BPEmb is a collection of pre-trained subword embeddings in 275 languages, based on Byte-Pair Encoding (BPE) and trained on Wikipedia. Its intended use is as input for neural models in natural language processing.
+
+If you use BPEmb in academic work, please cite this [paper](http://www.lrec-conf.org/proceedings/lrec2018/summaries/1049.html).
 
 
 ## tl;dr
