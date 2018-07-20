@@ -1,8 +1,6 @@
 # BPEmb
 
-BPEmb is a collection of pre-trained subword embeddings in 275 languages, based on Byte-Pair Encoding (BPE) and trained on Wikipedia. Its intended use is as input for neural models in natural language processing.
-
-If you use BPEmb in academic work, please cite this [paper](http://www.lrec-conf.org/proceedings/lrec2018/summaries/1049.html).
+BPEmb is a collection of pre-trained subword embeddings in 275 languages, based on Byte-Pair Encoding (BPE) and trained on Wikipedia. Its intended use is as input for neural models in natural language processing. [arxiv](https://arxiv.org/pdf/1710.02187.pdf)
 
 
 ## tl;dr
@@ -221,6 +219,7 @@ If you use BPEmb or the entity typing data in academic work, please cite:
   language = {english}
   }
 ```
+
 | Language | Wikipedia edition | merge ops | model | vocab | 25 dims | 50 dims | 100 dims | 200 dims | 300 dims |
 | - | - | - | - | - | - | - | - | - | - |
 | **English** | en | 1000 | [model](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.model) | [vocab](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.vocab) | 25<br>[bin](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d25.w2v.bin.tar.gz) [txt](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d25.w2v.txt.tar.gz) | 50<br>[bin](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d50.w2v.bin.tar.gz) [txt](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d50.w2v.txt.tar.gz) | 100<br>[bin](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d100.w2v.bin.tar.gz) [txt](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d100.w2v.txt.tar.gz) | 200<br>[bin](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d200.w2v.bin.tar.gz) [txt](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d200.w2v.txt.tar.gz) | 300<br>[bin](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d300.w2v.bin.tar.gz) [txt](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d300.w2v.txt.tar.gz) |
