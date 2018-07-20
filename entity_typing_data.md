@@ -1,6 +1,6 @@
 # Entity typing data in 275 languages
 
-For our entity typing experiments, we collected entity *labels* (Wikipedia article titles) from [wikidata](https://www.wikidata.org) and mapped them to fine-grained *entity types*. The resulting data in 275 languages can be downloaded [here](http://cosyne.h-its.org/bpemb/wikidata_to_type_map).
+For our entity typing experiments, we collected entity *labels* (Wikipedia article titles) from [wikidata](https://www.wikidata.org) (20170814 dump) and mapped them to fine-grained *entity types*. The resulting data in 275 languages can be downloaded [here](http://cosyne.h-its.org/bpemb/wikidata_to_type_map).
 
 We provide data for several entity type inventories:
 
