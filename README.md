@@ -39,6 +39,8 @@ INFO:gensim.models.keyedvectors:loaded (3829, 100) matrix
 - [How to use BPEmb](#how-to-use-bpemb)
 - [Number of BPE merge operations](#how-should-i-choose-the-number-of-bpe-merge-operations)
 - [Download](#download-bpemb)
+- [Entity typing data](#entity)
+- [Reference](#reference)
 
 #### What are subword embeddings and why should I use them?
 
@@ -194,6 +196,29 @@ The advantage of having many operations is that many frequent words get their ow
 
 Downloads for the 15 largest (by Wikipedia size) languages below. Downloads for all 275 languages are available in binary format readable by gensim or word2vec, and in plain text format: [bin](download.bin.md), [txt](download.txt.md).
 
+
+## Entity typing data
+
+The data used in our multilingual entity typing experiments can be downloaded [here](entity_typing_data.md)
+
+## Reference
+
+If you use BPEmb or the entity typing data in academic work, please cite:
+
+```
+@InProceedings{heinzerling2018bpemb,
+  author = {Benjamin Heinzerling and Michael Strube},
+  title = "{BPEmb: Tokenization-free Pre-trained Subword Embeddings in 275 Languages}",
+  booktitle = {Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC 2018)},
+  year = {2018},
+  month = {May 7-12, 2018},
+  address = {Miyazaki, Japan},
+  editor = {Nicoletta Calzolari (Conference chair) and Khalid Choukri and Christopher Cieri and Thierry Declerck and Sara Goggi and Koiti Hasida and Hitoshi Isahara and Bente Maegaard and Joseph Mariani and Hélène Mazo and Asuncion Moreno and Jan Odijk and Stelios Piperidis and Takenobu Tokunaga},
+  publisher = {European Language Resources Association (ELRA)},
+  isbn = {979-10-95546-00-9},
+  language = {english}
+  }
+```
 | Language | Wikipedia edition | merge ops | model | vocab | 25 dims | 50 dims | 100 dims | 200 dims | 300 dims |
 | - | - | - | - | - | - | - | - | - | - |
 | **English** | en | 1000 | [model](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.model) | [vocab](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.vocab) | 25<br>[bin](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d25.w2v.bin.tar.gz) [txt](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d25.w2v.txt.tar.gz) | 50<br>[bin](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d50.w2v.bin.tar.gz) [txt](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d50.w2v.txt.tar.gz) | 100<br>[bin](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d100.w2v.bin.tar.gz) [txt](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d100.w2v.txt.tar.gz) | 200<br>[bin](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d200.w2v.bin.tar.gz) [txt](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d200.w2v.txt.tar.gz) | 300<br>[bin](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d300.w2v.bin.tar.gz) [txt](http://cosyne.h-its.org/bpemb/data/en/en.wiki.bpe.op1000.d300.w2v.txt.tar.gz) |
