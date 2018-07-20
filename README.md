@@ -192,11 +192,6 @@ The advantage of having few operations is that this results in a smaller vocabul
 The advantage of having many operations is that many frequent words get their own symbols, so you don't have to learn how what the word *railway* means by composing it from the symbols *r*, *ail*, and *way*. The disadvantage is that you need more data to train good embeddings for these longer symbols, which is available for high-resource languages like English, but less so for low-resource languages like Khmer.
 
 
-## Download BPEmb
-
-Downloads for the 15 largest (by Wikipedia size) languages below. Downloads for all 275 languages are available in binary format readable by gensim or word2vec, and in plain text format: [bin](download.bin.md), [txt](download.txt.md).
-
-
 ## Entity typing data
 
 The data used in our multilingual entity typing experiments can be downloaded [here](entity_typing_data.md).
@@ -219,6 +214,12 @@ If you use BPEmb or the entity typing data in academic work, please cite:
   language = {english}
   }
 ```
+
+
+## Download BPEmb
+
+Downloads for the 15 largest (by Wikipedia size) languages below. Downloads for all 275 languages are available in binary format readable by gensim or word2vec, and in plain text format: [bin](download.bin.md), [txt](download.txt.md).
+
 
 | Language | Wikipedia edition | merge ops | model | vocab | 25 dims | 50 dims | 100 dims | 200 dims | 300 dims |
 | - | - | - | - | - | - | - | - | - | - |
