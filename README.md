@@ -199,7 +199,7 @@ Downloads for the 15 largest (by Wikipedia size) languages below. Downloads for 
 
 ## Entity typing data
 
-The data used in our multilingual entity typing experiments can be downloaded [here](entity_typing_data.md)
+The data used in our multilingual entity typing experiments can be downloaded [here](entity_typing_data.md).
 
 ## Reference
 
