@@ -6,7 +6,7 @@ We provide data for several entity type inventories:
 
 ## Notable FIGER type (filename: label_figer_notable_type)
 
-A map from wikidata labels to exactly one of the 112 fine-grained entity types introduced by [Ling & Weld, 2012](http://aiweb.cs.washington.edu/ai/pubs/ling-aaai12.pdf). The entity type is selected via the *notable type* property in Freebase, i.e. the entity type most commonly associated with an entity. This is the data on which the results reported in our [paper](https://arxiv.org/pdf/1710.02187.pdf) are based.
+A map from wikidata labels to exactly one of the 112 fine-grained entity types introduced by [Ling & Weld, 2012](http://aiweb.cs.washington.edu/ai/pubs/ling-aaai12.pdf). The entity type is selected via the *notable type* property in Freebase, i.e. the entity type most commonly associated with an entity.
 
 ## FIGER types (filename: label_figer_types)
 
@@ -14,8 +14,7 @@ A map from wikidata labels to one or more of the 112 FIGER types. The entity typ
 
 ## Gillick types (filename: label_gillick_types)
 
-A map from wikidata labels to one or more of the 89 entity types proposed by [Gillick et al., 2014](https://arxiv.org/abs/1412.1820). The entity types are all types found for the given entity in Freebase.
-
+A map from wikidata labels to one or more of the 89 entity types proposed by [Gillick et al., 2014](https://arxiv.org/abs/1412.1820). The entity types are all types found for the given entity in Freebase. This is the data on which the results reported in our [paper](https://arxiv.org/pdf/1710.02187.pdf) are based.
 
 ## Gillick 4class types (filename: label_gillick_4class_types)
 
