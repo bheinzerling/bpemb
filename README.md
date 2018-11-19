@@ -2,7 +2,7 @@
 
 BPEmb is a collection of pre-trained subword embeddings in 275 languages, based on Byte-Pair Encoding (BPE) and trained on Wikipedia. Its intended use is as input for neural models in natural language processing.
 
-[cosyne.h-its.org/bpemb](cosyne.h-its.org/bpemb)
+[Website](https://cosyne.h-its.org/bpemb)
 
 ## Usage
 
