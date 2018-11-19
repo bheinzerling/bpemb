@@ -1,5 +1,5 @@
-gensim==3.5.0
-numpy==1.15.0
-requests==2.14.2
-sentencepiece==0.0.9
-tqdm==4.15.0
+gensim>=3.5.0
+numpy>=1.15.0
+requests>=2.20.0
+sentencepiece>=0.0.9
+tqdm>=4.15.0
