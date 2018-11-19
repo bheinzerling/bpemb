@@ -102,8 +102,8 @@ class BPEmb():
         Chinese due to the large number of characters.
         When set to True, this option enables an automatic fallback to
         the closest available vocabulary size. For example,
-        when selecting BPEmb("Chinese", vs=1000), the actual vocabulary
-        size would be 10000.
+        when selecting BPEmb("Chinese", vs=1000, vs_fallback=True),
+        the actual vocabulary size would be 10000.
     """
     base_url = "http://cosyne.h-its.org/bpemb/"
     emb_tpl = "{lang}/{lang}.wiki.bpe.vs{vs}.d{dim}.w2v.bin"
