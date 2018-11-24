@@ -15,7 +15,7 @@ pip install bpemb
 Embeddings and SentencePiece models will be downloaded automatically the first time you use them.
 
 ```python
->>> from bpemb install BPEmb
+>>> from bpemb import BPEmb
 # load English BPEmb model with vocabulary size 50k and 300-dimensional embeddings
 >>> bpemb_en = BPEmb(lang="en", vs=50000, dim=300)
 downloading http://cosyne.h-its.org/bpemb/en/en.wiki.bpe.vs50000.model
