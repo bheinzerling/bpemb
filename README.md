@@ -16,10 +16,10 @@ Embeddings and SentencePiece models will be downloaded automatically the first t
 
 ```python
 >>> from bpemb import BPEmb
-# load English BPEmb model with vocabulary size 50k and 300-dimensional embeddings
->>> bpemb_en = BPEmb(lang="en")
-downloading http://cosyne.h-its.org/bpemb/en/en.wiki.bpe.vs50000.model
-downloading http://cosyne.h-its.org/bpemb/en/en.wiki.bpe.vs50000.d300.w2v.bin.tar.gz
+# load English BPEmb model with default vocabulary size (10k) and 50-dimensional embeddings
+>>> bpemb_en = BPEmb(lang="en", dim=50)
+downloading http://cosyne.h-its.org/bpemb/en/en.wiki.bpe.vs10000.model
+downloading http://cosyne.h-its.org/bpemb/en/en.wiki.bpe.vs10000.d50.w2v.bin.tar.gz
 ```
 
 The two main things you can do with BPEmb are subword segmentation:
@@ -54,7 +54,7 @@ gensim.models.keyedvectors.Word2VecKeyedVectors
 >>> type(bpemb_en.vectors)
 numpy.ndarray
 >>> bpemb_en.vectors.shape
-(50000, 300)
+(10000, 50)
 >>> bpemb_zh.vectors.shape
 (100000, 100)
 ```
