@@ -4,6 +4,8 @@ BPEmb is a collection of pre-trained subword embeddings in 275 languages, based 
 
 [Website](http://cosyne.h-its.org/bpemb)
 
+# The BPEmb webserver is currently undergoing maintenance and may be unavailable for a few hours
+
 ## Usage
 
 Install BPEmb with pip:
