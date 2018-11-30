@@ -134,7 +134,7 @@ class BPEmb():
                     vs = available[0]
                 else:
                     vs = available[-1]
-                print(f"BPEmb fallback: {lang} from vocab size {_vs} to {vs}")
+                print("BPEmb fallback: {} from vocab size {} to {}".format(lang, _vs, vs))
         self.vocab_size = self.vs = vs
         self.dim = dim
         self.cache_dir = cache_dir
@@ -162,7 +162,7 @@ class BPEmb():
         except AttributeError:
             cls_name = self.__class__.__name__
             raise AttributeError(
-                f"'{cls_name}' object has no attribute '{attr}'")
+                "'{}' object has no attribute '{}'".format(cls_name, attr))
 
     @staticmethod
     def _get_lang(lang):
@@ -184,7 +184,7 @@ class BPEmb():
 
     def __repr__(self):
         return self.__class__.__name__ + \
-            f"(lang={self.lang}, vs={self.vocab_size}, dim={self.dim})"
+            "(lang={}, vs={}, dim={})".format(self.lang, self.vocab_size, self.dim)
 
     def encode(
             self,
