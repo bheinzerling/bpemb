@@ -22,7 +22,7 @@ downloading http://cosyne.h-its.org/bpemb/en/en.wiki.bpe.vs10000.model
 downloading http://cosyne.h-its.org/bpemb/en/en.wiki.bpe.vs10000.d50.w2v.bin.tar.gz
 ```
 
-The two main things you can do with BPEmb are subword segmentation:
+You can do two main things with BPEmb. The first is subword segmentation:
 ```python
 # apply English BPE subword segmentation model
 >>> bpemb_en.encode("Stratford")
@@ -34,7 +34,22 @@ The two main things you can do with BPEmb are subword segmentation:
 ['▁这是一个', '中文', '句子']  # ["This is a", "Chinese", "sentence"]
 ```
 
-...and using pretrained subword embeddings:
+If / how a word gets split depends on the vocabulary size. Generally, a smaller vocabulary size will yield a segmentation into many subwords, while a large vocabulary size will result in frequent words not being split:
+
+| vocabulary size | segmentation |
+| --- | --- |
+| 1000 | ['▁str', 'at', 'f', 'ord'] |
+| 3000 |  ['▁str', 'at', 'ford'] |
+| 5000 | ['▁str', 'at', 'ford'] |
+| 10000 | ['▁strat', 'ford'] |
+| 25000 | ['▁stratford'] |
+| 50000 | ['▁stratford'] |
+| 100000 | ['▁stratford'] |
+| 200000 | ['▁stratford'] |
+
+
+The second purpose of BPEmb is to provide pretrained subword embeddings:
+
 ```python
 # Embeddings are wrapped in a gensim KeyedVectors object
 >>> type(bpemb_zh.emb)
