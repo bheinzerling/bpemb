@@ -105,7 +105,7 @@ class BPEmb():
         when selecting BPEmb("Chinese", vs=1000, vs_fallback=True),
         the actual vocabulary size would be 10000.
     """
-    base_url = "http://cosyne.h-its.org/bpemb/"
+    base_url = "https://nlp.h-its.org/bpemb/"
     emb_tpl = "{lang}/{lang}.wiki.bpe.vs{vs}.d{dim}.w2v.bin"
     model_tpl = "{lang}/{lang}.wiki.bpe.vs{vs}.model"
     archive_suffix = ".tar.gz"

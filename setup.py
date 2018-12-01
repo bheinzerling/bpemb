@@ -5,11 +5,11 @@ with open("README.md", "r") as fh:
 
 setup(
     name='bpemb',
-    version='0.2.8',
+    version='0.2.9',
     description='Byte-pair embeddings in 275 languages',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='http://github.com/bheinzerling/bpemb',
+    url='https://nlp.h-its.org/bpemb',
     author='Benjamin Heinzerling',
     author_email='benjamin.heinzerling@h-its.org',
     license='MIT',
