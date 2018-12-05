@@ -2,7 +2,12 @@
 
 BPEmb is a collection of pre-trained subword embeddings in 275 languages, based on Byte-Pair Encoding (BPE) and trained on Wikipedia. Its intended use is as input for neural models in natural language processing.
 
-https://nlp.h-its.org/bpemb
+[Website](https://nlp.h-its.org/bpemb) ・ 
+[Usage](#usage) ・ 
+[Download](#downloads-for-each-language) ・ 
+[Citing BPEmb](#citing-bpemb)
+
+
 
 ## Usage
 
@@ -393,7 +398,7 @@ Or use the `embed` method:
 [zu (Zulu)](http://nlp.h-its.org/bpemb/zu)
 
 
-## Reference
+## Citing BPEmb
 
 If you use BPEmb in academic work, please cite:
 
