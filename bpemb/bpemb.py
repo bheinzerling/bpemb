@@ -396,7 +396,7 @@ class BPEmb():
         -------
         The preprocessed text.
         """
-        return re.sub("\d", "0", text.lower())
+        return re.sub(r"\d", "0", text.lower())
 
     @property
     def pieces(self):
