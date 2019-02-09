@@ -66,6 +66,21 @@ class BPEmbTest(unittest.TestCase):
         texts = ["this is a test", "another test", "and one more"]
         self.assertEqual(texts, bpemb.decode_ids(bpemb.encode_ids(texts)))
 
+    def test_pickle(self):
+        import pickle
+        from tempfile import mkdtemp
+        from pathlib import Path
+        bpemb = BPEmb(lang="en", vs=1000, dim=25)
+        pklfile = Path(mkdtemp()) / "bpemb.pkl"
+        with pklfile.open("wb") as out:
+            pickle.dump(bpemb, out)
+        with pklfile.open("rb") as pkl:
+            bpemb_unpickled = pickle.load(pkl)
+        text = "this is a test"
+        self.assertEqual(
+            text, bpemb.decode_ids(bpemb_unpickled.encode_ids(text)))
+        self.assertEqual(
+            text, bpemb_unpickled.decode_ids(bpemb.encode_ids(text)))
 
 if __name__ == "__main__":
     unittest.main()

@@ -424,5 +424,17 @@ class BPEmb():
         lang = BPEmb._get_lang(lang)
         return vocab_sizes[lang]
 
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        # the SentencePiece instance is not serializable since it is a
+        # SWIG object, so we need to delete it before serializing
+        state['spm'] = None
+        return state
+
+    def __setstate__(self, state):
+        # load SentencePiece after the BPEmb object has been unpickled
+        state['spm'] = sentencepiece_load(state['model_file'])
+        self.__dict__ = state
+
 
 __all__ = [BPEmb]
