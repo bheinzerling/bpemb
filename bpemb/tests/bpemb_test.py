@@ -82,5 +82,41 @@ class BPEmbTest(unittest.TestCase):
         self.assertEqual(
             text, bpemb_unpickled.decode_ids(bpemb.encode_ids(text)))
 
+    def test_pickle_custom_cache_dir(self):
+        import pickle
+        from tempfile import mkdtemp
+        from pathlib import Path
+        bpemb = BPEmb(lang="en", vs=1000, dim=25, cache_dir=mkdtemp())
+        pklfile = Path(mkdtemp()) / "bpemb.pkl"
+        with pklfile.open("wb") as out:
+            pickle.dump(bpemb, out)
+        with pklfile.open("rb") as pkl:
+            bpemb_unpickled = pickle.load(pkl)
+        text = "this is a test"
+        self.assertEqual(
+            text, bpemb.decode_ids(bpemb_unpickled.encode_ids(text)))
+        self.assertEqual(
+            text, bpemb_unpickled.decode_ids(bpemb.encode_ids(text)))
+
+    def test_pickle_custom_no_cache(self):
+        import pickle
+        from tempfile import mkdtemp
+        from pathlib import Path
+        import shutil
+        cache_dir = mkdtemp()
+        bpemb = BPEmb(lang="en", vs=1000, dim=25, cache_dir=cache_dir)
+        shutil.rmtree(cache_dir)
+        pklfile = Path(mkdtemp()) / "bpemb.pkl"
+        with pklfile.open("wb") as out:
+            pickle.dump(bpemb, out)
+        with pklfile.open("rb") as pkl:
+            bpemb_unpickled = pickle.load(pkl)
+        text = "this is a test"
+        self.assertEqual(
+            text, bpemb.decode_ids(bpemb_unpickled.encode_ids(text)))
+        self.assertEqual(
+            text, bpemb_unpickled.decode_ids(bpemb.encode_ids(text)))
+
+
 if __name__ == "__main__":
     unittest.main()

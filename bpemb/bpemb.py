@@ -137,7 +137,7 @@ class BPEmb():
                 print("BPEmb fallback: {} from vocab size {} to {}".format(lang, _vs, vs))
         self.vocab_size = self.vs = vs
         self.dim = dim
-        self.cache_dir = cache_dir
+        self.cache_dir = Path(cache_dir)
         model_file = self.model_tpl.format(lang=lang, vs=vs)
         self.model_file = self._load_file(model_file)
         self.spm = sentencepiece_load(self.model_file)
@@ -169,13 +169,14 @@ class BPEmb():
         except:
             raise ValueError("Unknown language identifier: " + lang)
 
-    def _load_file(self, file, archive=False):
-        if hasattr(self, "cache_dir"):
-            cache_dir = self.cache_dir
-        else:
-            from tempfile import mkdtemp
-            cache_dir = Path(mkdtemp())
-        cached_file = cache_dir / file
+    def _load_file(self, file, archive=False, cache_dir=None):
+        if not cache_dir:
+            if hasattr(self, "cache_dir"):
+                cache_dir = self.cache_dir
+            else:
+                from tempfile import mkdtemp
+                cache_dir = Path(mkdtemp())
+        cached_file = Path(cache_dir) / file
         if cached_file.exists():
             return cached_file
         suffix = self.archive_suffix if archive else ""
@@ -434,10 +435,12 @@ class BPEmb():
 
     def __setstate__(self, state):
         # load SentencePiece after the BPEmb object has been unpickled
-        model_file = Path(state['model_file'])
+        model_file = (
+            state["cache_dir"] / state["lang"] / state['model_file'].name)
         if not model_file.exists():
-            model_rel_path = Path(state["lang"]) / Path(model_file.name)
-            model_file = self._load_file(str(model_rel_path))
+            model_rel_path = Path(state["lang"]) / model_file.name
+            model_file = self._load_file(
+                str(model_rel_path), cache_dir=state["cache_dir"])
         state['spm'] = sentencepiece_load(model_file)
         self.__dict__ = state
 
