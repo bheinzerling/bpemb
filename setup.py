@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='bpemb',
-    version='0.2.10',
+    version='0.2.11',
     description='Byte-pair embeddings in 275 languages',
     long_description=long_description,
     long_description_content_type="text/markdown",
