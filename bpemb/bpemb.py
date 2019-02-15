@@ -152,17 +152,13 @@ class BPEmb():
         self.EOS_str = "</s>"
         self.BOS = self.spm.PieceToId(self.BOS_str)
         self.EOS = self.spm.PieceToId(self.EOS_str)
-    
+
     def __getitem__(self, key):
         return self.emb.__getitem__(key)
 
-    def __getattr__(self, attr):
-        try:
-            return getattr(self.emb, attr)
-        except AttributeError:
-            cls_name = self.__class__.__name__
-            raise AttributeError(
-                "'{}' object has no attribute '{}'".format(cls_name, attr))
+    @property
+    def vectors(self):
+        return self.emb.vectors
 
     @staticmethod
     def _get_lang(lang):
@@ -174,7 +170,12 @@ class BPEmb():
             raise ValueError("Unknown language identifier: " + lang)
 
     def _load_file(self, file, archive=False):
-        cached_file = self.cache_dir / file
+        if hasattr(self, "cache_dir"):
+            cache_dir = self.cache_dir
+        else:
+            from tempfile import mkdtemp
+            cache_dir = Path(mkdtemp())
+        cached_file = cache_dir / file
         if cached_file.exists():
             return cached_file
         suffix = self.archive_suffix if archive else ""
@@ -433,7 +434,10 @@ class BPEmb():
 
     def __setstate__(self, state):
         # load SentencePiece after the BPEmb object has been unpickled
-        state['spm'] = sentencepiece_load(state['model_file'])
+        model_file = Path(state['model_file'])
+        if not model_file.exists():
+            model_file = self._load_file(state["lang"] + "/" + model_file.name)
+        state['spm'] = sentencepiece_load(model_file)
         self.__dict__ = state
 
 

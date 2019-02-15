@@ -1,28 +1,11 @@
 from pathlib import Path
 from typing import IO
 
-from sentencepiece import SentencePieceProcessor
-
-
-class PicklableSWIG:
-
-    def __setstate__(self, state):
-        self.__init__(*state['args'])
-
-    def __getstate__(self):
-        return {'args': self.args}
-
-
-class PicklableSentencePieceProcessor(SentencePieceProcessor, PicklableSWIG):
-
-    def __init__(self, *args):
-        self.args = args
-        SentencePieceProcessor.__init__(self)
-
 
 def sentencepiece_load(file):
     """Load a SentencePiece model"""
-    spm = PicklableSentencePieceProcessor()
+    from sentencepiece import SentencePieceProcessor
+    spm = SentencePieceProcessor()
     spm.Load(str(file))
     return spm
 
