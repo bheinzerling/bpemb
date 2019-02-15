@@ -54,7 +54,8 @@ def http_get(url: str, outfile: Path, ignore_tardir=False) -> None:
                 member.name = Path(member.name).name
             tf.extract(member, str(outfile.parent))
             extracted_file = outfile.parent / member.name
-            assert extracted_file == outfile, "{} != {}".format(extracted_file, outfile)
+            assert extracted_file == outfile, "{} != {}".format(
+                extracted_file, outfile)
         else:
             with open(str(outfile), 'wb') as out:
                 shutil.copyfileobj(temp_file, out)
