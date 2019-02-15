@@ -436,7 +436,8 @@ class BPEmb():
         # load SentencePiece after the BPEmb object has been unpickled
         model_file = Path(state['model_file'])
         if not model_file.exists():
-            model_file = self._load_file(state["lang"] + "/" + model_file.name)
+            model_rel_path = Path(state["lang"]) / Path(model_file.name)
+            model_file = self._load_file(str(model_rel_path))
         state['spm'] = sentencepiece_load(model_file)
         self.__dict__ = state
 
