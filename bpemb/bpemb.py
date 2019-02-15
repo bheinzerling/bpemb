@@ -175,7 +175,7 @@ class BPEmb():
                 cache_dir = self.cache_dir
             else:
                 from tempfile import mkdtemp
-                cache_dir = Path(mkdtemp())
+                cache_dir = mkdtemp()
         cached_file = Path(cache_dir) / file
         if cached_file.exists():
             return cached_file
