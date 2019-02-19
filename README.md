@@ -102,7 +102,7 @@ Or use the `embed` method:
 [ady (Adyghe)](http://nlp.h-its.org/bpemb/ady) ・ 
 [af (Afrikaans)](http://nlp.h-its.org/bpemb/af) ・ 
 [ak (Akan)](http://nlp.h-its.org/bpemb/ak) ・ 
-[als (Tosk Albanian)](http://nlp.h-its.org/bpemb/als) ・ 
+[als (Alemannic)](http://nlp.h-its.org/bpemb/als) ・ 
 [am (Amharic)](http://nlp.h-its.org/bpemb/am) ・ 
 [an (Aragonese)](http://nlp.h-its.org/bpemb/an) ・ 
 [ang (Old English)](http://nlp.h-its.org/bpemb/ang) ・ 
