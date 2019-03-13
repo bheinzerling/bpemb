@@ -117,6 +117,15 @@ class BPEmbTest(unittest.TestCase):
         self.assertEqual(
             text, bpemb_unpickled.decode_ids(bpemb.encode_ids(text)))
 
+    def test_pad_lookup(self):
+        dim = 25
+        bpemb = BPEmb(lang="en", vs=1000, dim=dim, add_pad_emb=True)
+        assert set(bpemb.emb["<pad>"].tolist()) == {0}
+
+    def test_pad_index(self):
+        dim = 25
+        bpemb = BPEmb(lang="en", vs=1000, dim=dim, add_pad_emb=True)
+        assert set(bpemb.vectors[-1]) == {0}
 
 if __name__ == "__main__":
     unittest.main()
