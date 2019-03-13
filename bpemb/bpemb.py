@@ -96,7 +96,7 @@ class BPEmb():
     add_pad_emb: ``bool'', optional (default = False)
         Whether to add a special <pad> embedding to the byte pair
         embeddings, thereby increasing the vocabulary size to vs + 1.
-        This embedding is initizalized with zeros and appended to the end
+        This embedding is initialized with zeros and appended to the end
         of the embedding matrix. Assuming "bpemb" is a BPEmb instance, the
         padding embedding can be looked up with "bpemb['<pad>']", or
         directly accessed with "bpemb.vectors[-1]".
