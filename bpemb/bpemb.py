@@ -94,8 +94,12 @@ class BPEmb():
         Options that are directly passed to the SentencePiece encoder.
         See SentencePiece documentation for details.
     add_pad_emb: ``bool'', optional (default = False)
-        Whether to add a special <PAD> embedding to the byte pair
+        Whether to add a special <pad> embedding to the byte pair
         embeddings, thereby increasing the vocabulary size to vs + 1.
+        This embedding is initizalized with zeros and appended to the end
+        of the embedding matrix. Assuming "bpemb" is a BPEmb instance, the
+        padding embedding can be looked up with "bpemb['<pad>']", or
+        directly accessed with "bpemb.vectors[-1]".
     vs_fallback: ``bool'', optional (default = False)
         Vocabulary size fallback. Not all vocabulary sizes are available
         for all languages. For example, vs=1000 is not available for
