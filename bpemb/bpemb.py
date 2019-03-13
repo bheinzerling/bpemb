@@ -150,6 +150,7 @@ class BPEmb():
         emb_file = self.emb_tpl.format(lang=lang, vs=vs, dim=dim)
         self.emb_file = self._load_file(emb_file, archive=True)
         self.emb = load_word2vec_file(self.emb_file, add_pad=add_pad_emb)
+        self.most_similar = self.emb.most_similar
         assert self.dim == self.emb.vectors.shape[1]
         self.do_preproc = preprocess
         self.BOS_str = "<s>"
