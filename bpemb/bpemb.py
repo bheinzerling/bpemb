@@ -172,7 +172,7 @@ class BPEmb():
     @staticmethod
     def _get_lang(lang):
         if lang in {'multi', 'multilingual'}:
-            return lang
+            return 'multi'
         if lang in wikicode:
             return lang
         try:
