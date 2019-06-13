@@ -127,6 +127,10 @@ class BPEmb():
             add_pad_emb: bool = False,
             vs_fallback: bool = True):
         self.lang = lang = BPEmb._get_lang(lang)
+        if self.lang == 'multi':
+            if dim != 300:
+                print('Setting dim=300 for multilingual BPEmb')
+                dim = 300
         if vs_fallback:
             available = BPEmb.available_vocab_sizes(lang)
             if not available:
@@ -167,6 +171,8 @@ class BPEmb():
 
     @staticmethod
     def _get_lang(lang):
+        if lang in {'multi', 'multilingual'}:
+            return lang
         if lang in wikicode:
             return lang
         try:
