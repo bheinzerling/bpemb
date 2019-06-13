@@ -5,6 +5,7 @@ BPEmb is a collection of pre-trained subword embeddings in 275 languages, based 
 [Website](https://nlp.h-its.org/bpemb) ・ 
 [Usage](#usage) ・ 
 [Download](#downloads-for-each-language) ・ 
+[MultiBPEmb](#multibpemb) ・ 
 [Paper (pdf)](http://www.lrec-conf.org/proceedings/lrec2018/pdf/1049.pdf) ・ 
 [Citing BPEmb](#citing-bpemb)
 
@@ -398,6 +399,9 @@ Or use the `embed` method:
 [zh (Chinese)](http://nlp.h-its.org/bpemb/zh) ・ 
 [zu (Zulu)](http://nlp.h-its.org/bpemb/zu)
 
+## MultiBPEmb
+
+[multi (multilingual)](http://nlp.h-its.org/bpemb/multi)
 
 ## Citing BPEmb
 
