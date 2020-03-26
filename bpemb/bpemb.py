@@ -140,6 +140,10 @@ class BPEmb():
             emb_file: Path = None):
         if lang is not None:
             self.lang = lang = BPEmb._get_lang(lang)
+            if self.lang == 'multi':
+                if dim != 300:
+                    print('Setting dim=300 for multilingual BPEmb')
+                    dim = 300
         else:
             assert (
                 model_file is not None and
@@ -199,6 +203,8 @@ class BPEmb():
 
     @staticmethod
     def _get_lang(lang):
+        if lang in {'multi', 'multilingual'}:
+            return 'multi'
         if lang in wikicode:
             return lang
         try:
