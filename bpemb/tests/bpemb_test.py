@@ -127,6 +127,10 @@ class BPEmbTest(unittest.TestCase):
         bpemb = BPEmb(lang="en", vs=1000, dim=dim, add_pad_emb=True)
         assert set(bpemb.vectors[-1]) == {0}
 
+    def test_segmentation_only(self):
+        bpemb = BPEmb(lang="en", vs=1000, dim=25, segmentation_only=True)
+        assert not hasattr(bpemb, 'emb')
+
 
 if __name__ == "__main__":
     unittest.main()

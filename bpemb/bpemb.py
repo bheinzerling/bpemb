@@ -108,6 +108,10 @@ class BPEmb():
         the closest available vocabulary size. For example,
         when selecting BPEmb("Chinese", vs=1000, vs_fallback=True),
         the actual vocabulary size would be 10000.
+    segmentation_only: ``bool'', optional (defaul = False)
+        If set to True, only the SentencePiece subword segmentation
+        model will be loaded. Use this flag if you do not need the
+        subword embeddings.
     """
     base_url = "https://nlp.h-its.org/bpemb/"
     emb_tpl = "{lang}/{lang}.wiki.bpe.vs{vs}.d{dim}.w2v.bin"
@@ -125,7 +129,8 @@ class BPEmb():
             preprocess: bool = True,
             encode_extra_options: str = None,
             add_pad_emb: bool = False,
-            vs_fallback: bool = True):
+            vs_fallback: bool = True,
+            segmentation_only: bool = False):
         self.lang = lang = BPEmb._get_lang(lang)
         if vs_fallback:
             available = BPEmb.available_vocab_sizes(lang)
@@ -138,25 +143,28 @@ class BPEmb():
                     vs = available[0]
                 else:
                     vs = available[-1]
-                print("BPEmb fallback: {} from vocab size {} to {}".format(lang, _vs, vs))
+                print("BPEmb fallback: {} from vocab size {} to {}".format(
+                    lang, _vs, vs))
         self.vocab_size = self.vs = vs
-        self.dim = dim
         self.cache_dir = Path(cache_dir)
         model_file = self.model_tpl.format(lang=lang, vs=vs)
         self.model_file = self._load_file(model_file)
         self.spm = sentencepiece_load(self.model_file)
         if encode_extra_options:
             self.spm.SetEncodeExtraOptions(encode_extra_options)
-        emb_file = self.emb_tpl.format(lang=lang, vs=vs, dim=dim)
-        self.emb_file = self._load_file(emb_file, archive=True)
-        self.emb = load_word2vec_file(self.emb_file, add_pad=add_pad_emb)
-        self.most_similar = self.emb.most_similar
-        assert self.dim == self.emb.vectors.shape[1]
         self.do_preproc = preprocess
         self.BOS_str = "<s>"
         self.EOS_str = "</s>"
         self.BOS = self.spm.PieceToId(self.BOS_str)
         self.EOS = self.spm.PieceToId(self.EOS_str)
+        self.segmentation_only = segmentation_only
+        if not self.segmentation_only:
+            self.dim = dim
+            emb_file = self.emb_tpl.format(lang=lang, vs=vs, dim=dim)
+            self.emb_file = self._load_file(emb_file, archive=True)
+            self.emb = load_word2vec_file(self.emb_file, add_pad=add_pad_emb)
+            self.most_similar = self.emb.most_similar
+            assert self.dim == self.emb.vectors.shape[1]
 
     def __getitem__(self, key):
         return self.emb.__getitem__(key)
