@@ -108,10 +108,15 @@ class BPEmb():
         the closest available vocabulary size. For example,
         when selecting BPEmb("Chinese", vs=1000, vs_fallback=True),
         the actual vocabulary size would be 10000.
-    segmentation_only: ``bool'', optional (defaul = False)
+    segmentation_only: ``bool'', optional (default = False)
         If set to True, only the SentencePiece subword segmentation
         model will be loaded. Use this flag if you do not need the
         subword embeddings.
+    model_file: ``Path'', optional (default = None)
+        Path to a custom SentencePiece model file.
+    emb_file: ``Path'', optional (default = None)
+        Path to a custom embedding file. Supported formats are Word2Vec
+        plain text and GenSim binary.
     """
     base_url = "https://nlp.h-its.org/bpemb/"
     emb_tpl = "{lang}/{lang}.wiki.bpe.vs{vs}.d{dim}.w2v.bin"
@@ -122,7 +127,7 @@ class BPEmb():
     def __init__(
             self,
             *,
-            lang: str,
+            lang: str = None,
             vs: int = 10000,
             dim: int = 100,
             cache_dir: Path = Path.home() / Path(".cache/bpemb"),
@@ -130,9 +135,19 @@ class BPEmb():
             encode_extra_options: str = None,
             add_pad_emb: bool = False,
             vs_fallback: bool = True,
-            segmentation_only: bool = False):
-        self.lang = lang = BPEmb._get_lang(lang)
-        if vs_fallback:
+            segmentation_only: bool = False,
+            model_file: Path = None,
+            emb_file: Path = None):
+        if lang is not None:
+            self.lang = lang = BPEmb._get_lang(lang)
+        else:
+            assert (
+                model_file is not None and
+                emb_file is not None), (
+                'Need to specify model_file and emb_file if no lang '
+                'is given in BPEmb(...)')
+            self.lang = lang
+        if vs_fallback and lang:
             available = BPEmb.available_vocab_sizes(lang)
             if not available:
                 raise ValueError("No BPEmb models for language " + lang)
@@ -145,11 +160,15 @@ class BPEmb():
                     vs = available[-1]
                 print("BPEmb fallback: {} from vocab size {} to {}".format(
                     lang, _vs, vs))
-        self.vocab_size = self.vs = vs
         self.cache_dir = Path(cache_dir)
-        model_file = self.model_tpl.format(lang=lang, vs=vs)
-        self.model_file = self._load_file(model_file)
+        if model_file is not None:
+            # custom model file
+            self.model_file = Path(model_file)
+        else:
+            model_file = self.model_tpl.format(lang=lang, vs=vs)
+            self.model_file = self._load_file(model_file)
         self.spm = sentencepiece_load(self.model_file)
+        self.vocab_size = self.vs = self.spm.get_piece_size()
         if encode_extra_options:
             self.spm.SetEncodeExtraOptions(encode_extra_options)
         self.do_preproc = preprocess
@@ -159,12 +178,17 @@ class BPEmb():
         self.EOS = self.spm.PieceToId(self.EOS_str)
         self.segmentation_only = segmentation_only
         if not self.segmentation_only:
-            self.dim = dim
-            emb_file = self.emb_tpl.format(lang=lang, vs=vs, dim=dim)
-            self.emb_file = self._load_file(emb_file, archive=True)
+            if emb_file is not None:
+                # custom embedding file
+                self.emb_file = Path(emb_file)
+            else:
+                emb_file = self.emb_tpl.format(lang=lang, vs=vs, dim=dim)
+                self.emb_file = self._load_file(emb_file, archive=True)
             self.emb = load_word2vec_file(self.emb_file, add_pad=add_pad_emb)
             self.most_similar = self.emb.most_similar
-            assert self.dim == self.emb.vectors.shape[1]
+            self.dim = self.emb.vectors.shape[1]
+            if dim is not None:
+                assert self.dim == dim
 
     def __getitem__(self, key):
         return self.emb.__getitem__(key)
@@ -198,8 +222,12 @@ class BPEmb():
         return http_get(file_url, cached_file, ignore_tardir=True)
 
     def __repr__(self):
+        if self.lang:
+            lang_str = 'lang=' + self.lang
+        else:
+            lang_str = 'emb=' + self.emb_file.name
         return self.__class__.__name__ + \
-            "(lang={}, vs={}, dim={})".format(self.lang, self.vocab_size, self.dim)
+            "({}, vs={}, dim={})".format(lang_str, self.vocab_size, self.dim)
 
     def encode(
             self,
