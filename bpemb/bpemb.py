@@ -287,7 +287,7 @@ class BPEmb():
         -------
             The byte-pair-encoded text.
         """
-        return self.encode(
+        return self._encode(
             texts,
             lambda t: self.spm.EncodeAsPieces(t) + [self.EOS_str])
 
