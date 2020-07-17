@@ -1,11 +1,11 @@
 from setuptools import setup
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding='utf-8') as fh:
     long_description = fh.read()
 
 setup(
     name='bpemb',
-    version='0.2.11',
+    version='0.3.1',
     description='Byte-pair embeddings in 275 languages',
     long_description=long_description,
     long_description_content_type="text/markdown",
