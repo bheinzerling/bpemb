@@ -255,7 +255,7 @@ class BPEmb():
     def encode_ids(
             self,
             texts: Union[str, Sequence[str]]
-            ) -> Union[Sequence[str], Sequence[Sequence[str]]]:
+            ) -> Union[Sequence[int], Sequence[Sequence[int]]]:
         """Encode the supplied texts into byte-pair IDs.
         The byte-pair IDs correspond to row-indices into the embedding
         matrix.
@@ -294,7 +294,7 @@ class BPEmb():
     def encode_ids_with_eos(
             self,
             texts: Union[str, Sequence[str]]
-            ) -> Union[Sequence[str], Sequence[Sequence[str]]]:
+            ) -> Union[Sequence[int], Sequence[Sequence[int]]]:
         """Encode the supplied texts into byte-pair IDs, adding
         an end-of-sentence symbol at the end of each encoded text.
         The byte-pair IDs correspond to row-indices into the embedding
@@ -338,7 +338,7 @@ class BPEmb():
     def encode_ids_with_bos_eos(
             self,
             texts: Union[str, Sequence[str]]
-            ) -> Union[Sequence[str], Sequence[Sequence[str]]]:
+            ) -> Union[Sequence[int], Sequence[Sequence[int]]]:
         """Encode the supplied texts into byte-pair IDs, adding
         a begin-of-sentence and an end-of-sentence symbol at the
         begin and end of each encoded text.
@@ -402,7 +402,10 @@ class BPEmb():
             return self.spm.DecodePieces(pieces)
         return list(map(self.spm.DecodePieces, pieces))
 
-    def decode_ids(self, ids):
+    def decode_ids(
+            self,
+            ids: Union[Sequence[int], Sequence[Sequence[int]]]
+            ) -> Union[str, Sequence[str]]:
         """
         Decode the supplied byte-pair IDs.
 
