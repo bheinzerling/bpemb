@@ -81,7 +81,6 @@ def add_embeddings(keyed_vectors, *words, init=None):
     from gensim.models.keyedvectors import Vocab
     if init is None:
         init = np.zeros
-    for word in words:
-        vector = init(keyed_vectors.vectors.shape[1])
-        keyed_vectors.add_vector(word, vector)
+    vectors_to_add = init((len(words), keyed_vectors.vectors.shape[1]))
+    keyed_vectors.add_vectors(words, vectors_to_add)
     return keyed_vectors.vectors.shape[0]
