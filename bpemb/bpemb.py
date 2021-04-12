@@ -449,7 +449,10 @@ class BPEmb():
 
     @property
     def pieces(self):
-        return self.emb.index2word
+        try:
+            return self.emb.index_to_key
+        except AttributeError:
+            return self.emb.index2word
 
     @property
     def words(self):
