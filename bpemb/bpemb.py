@@ -402,7 +402,10 @@ class BPEmb():
             return self.spm.DecodePieces(pieces)
         return list(map(self.spm.DecodePieces, pieces))
 
-    def decode_ids(self, ids):
+    def decode_ids(
+            self,
+            ids: Union[Sequence[int], Sequence[Sequence[int]]]
+            ) -> Union[str, Sequence[str]]:
         """
         Decode the supplied byte-pair IDs.
 
