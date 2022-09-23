@@ -13,7 +13,15 @@ def sentencepiece_load(file):
 # source: https://github.com/allenai/allennlp/blob/master/allennlp/common/file_utils.py#L147  # NOQA
 def http_get_temp(url: str, temp_file: IO) -> None:
     import requests
-    req = requests.get(url, stream=True)
+    import warnings
+    from urllib3.exceptions import InsecureRequestWarning
+
+    # temporary fix for dealing with this SSL certificate issue:
+    # https://github.com/bheinzerling/bpemb/issues/63
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", InsecureRequestWarning)
+        req = requests.get(url, stream=True, verify=False)
+
     req.raise_for_status()
     content_length = req.headers.get('Content-Length')
     total = int(content_length) if content_length is not None else None
@@ -78,7 +86,6 @@ def load_word2vec_file(word2vec_file, add_pad=False, pad="<pad>"):
 
 def add_embeddings(keyed_vectors, *words, init=None):
     import numpy as np
-    from gensim.models.keyedvectors import Vocab
     if init is None:
         init = np.zeros
     vectors_to_add = init((len(words), keyed_vectors.vectors.shape[1]))
