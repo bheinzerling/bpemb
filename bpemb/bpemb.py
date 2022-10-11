@@ -365,22 +365,30 @@ class BPEmb():
             texts = map(self.preprocess, texts)
         return list(map(fn, texts))
 
-    def embed(self, text: str) -> np.ndarray:
+    def embed(self, texts: Union[str, Sequence[str]]) -> np.ndarray:
         """Byte-pair encode text and return the corresponding byte-pair
         embeddings.
 
         Parameters
         ----------
-        text: ``str'', required
-            The text to encode and embed.
+        texts: ``Union[str, Sequence[str]]'', required
+            The text or texts to encode and embed.
 
         Returns
         -------
-        A matrix of shape (l, d), where l is the length of the byte-pair
-        encoded text and d the embedding dimension.
+        If texts is a string, a matrix of shape (l, d), where l is the length
+        of the byte-pair encoded text and d the embedding dimension.
+        If texts is a sequence of strings, an array of shape (n,), where n is
+        the length of the text sequence, and each element is a matrix of shape
+        (l_i, d).
         """
-        ids = self.encode_ids(text)
-        return self.emb.vectors[ids]
+        ids = self.encode_ids(texts)
+        if isinstance(texts, str):
+            return self.emb.vectors[ids]
+        return np.asarray([
+            self.emb.vectors[text_ids]
+            for text_ids in ids
+        ])
 
     def decode(
             self,
