@@ -10,6 +10,10 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://nlp.h-its.org/bpemb',
+    project_urls = {
+        "Source Code": "https://github.com/bheinzerling/bpemb",
+        "Bug Tracker": "https://github.com/bheinzerling/bpemb",
+    },
     author='Benjamin Heinzerling',
     author_email='benjamin.heinzerling@h-its.org',
     license='MIT',
