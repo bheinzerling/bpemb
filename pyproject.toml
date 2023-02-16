@@ -1,3 +1,36 @@
 [build-system]
-requires = ["setuptools>=42.2"]
+requires = ["setuptools>=61.2"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "bpemb"
+version = "0.3.4"
+authors = [{name = "Benjamin Heinzerling", email = "benjamin.heinzerling@h-its.org"}]
+license = {text = "MIT"}
+description = "Byte-pair embeddings in 275 languages"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "gensim",
+    "numpy",
+    "requests",
+    "sentencepiece",
+    "tqdm",
+]
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.urls]
+Homepage = "https://nlp.h-its.org/bpemb"
+"Source Code" = "https://github.com/bheinzerling/bpemb"
+"Bug Tracker" = "https://github.com/bheinzerling/bpemb"
+
+[tool.setuptools]
+packages = ["bpemb"]
+zip-safe = true
+include-package-data = false
