@@ -51,7 +51,8 @@ def http_get(url: str, outfile: Path, ignore_tardir=False) -> None:
         # shutil.copyfileobj() starts at current position, so go to the start
         temp_file.seek(0)
         outfile.parent.mkdir(exist_ok=True, parents=True)
-        if headers.get("Content-Type") == "application/x-gzip":
+        content_header = headers.get("Content-Type")
+        if content_header and "gzip" in content_header:
             import tarfile
             tf = tarfile.open(fileobj=temp_file)
             members = tf.getmembers()
