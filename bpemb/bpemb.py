@@ -119,6 +119,7 @@ class BPEmb():
         plain text and GenSim binary.
     """
     base_url = "https://nlp.h-its.org/bpemb/"
+    base_url_multi = "https://bpemb.h-its.org/multi/"
     emb_tpl = "{lang}/{lang}.wiki.bpe.vs{vs}.d{dim}.w2v.bin"
     model_tpl = "{lang}/{lang}.wiki.bpe.vs{vs}.model"
     archive_suffix = ".tar.gz"
@@ -223,7 +224,12 @@ class BPEmb():
         if cached_file.exists():
             return cached_file
         suffix = self.archive_suffix if archive else ""
-        file_url = self.base_url + file + suffix
+        if 'multi/multi' in file:
+            # https://github.com/bheinzerling/bpemb/issues/68
+            base_url = self.base_url_multi
+        else:
+            base_url = self.base_url
+        file_url = base_url + file + suffix
         print("downloading", file_url)
         return http_get(file_url, cached_file, ignore_tardir=True)
 
